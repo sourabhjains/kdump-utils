@@ -1,3 +1,7 @@
+# No action if the kernel itself updates kdump image on CPU/Memory hotplug events
+SUBSYSTEM=="cpu", ATTRS{crash_hotplug}=="1", GOTO="kdump_reload_end"
+SUBSYSTEM=="memory", ATTRS{crash_hotplug}=="1", GOTO="kdump_reload_end"
+
 SUBSYSTEM=="cpu", ACTION=="online", GOTO="kdump_reload_cpu"
 SUBSYSTEM=="memory", ACTION=="online", GOTO="kdump_reload_mem"
 SUBSYSTEM=="memory", ACTION=="offline", GOTO="kdump_reload_mem"
